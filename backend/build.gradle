@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.3.0.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
+	id("com.google.cloud.tools.appengine") version "2.2.0"
 }
 
 group = 'com.cloud'
@@ -21,4 +22,15 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+}
+
+appengine {
+	stage {
+		appEngineDirectory = "/src/main"
+	}
+	deploy {
+		projectId = "GCLOUD_CONFIG"
+		version = "GCLOUD_CONFIG"
+		appEngineDirectory = "/src/main"
+	}
 }
