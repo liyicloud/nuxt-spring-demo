@@ -1,11 +1,9 @@
-package com.cloud.demo.infrastructure.controller;
+package com.cloud.demo.infra.controller;
 
 import com.cloud.demo.usecase.hello.Hello;
 import com.cloud.demo.usecase.hello.HelloDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/hello")
