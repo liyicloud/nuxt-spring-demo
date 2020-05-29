@@ -25,12 +25,8 @@ test {
 }
 
 appengine {
-	stage {
-		appEngineDirectory = "/src/main"
-	}
 	deploy {
 		projectId = "GCLOUD_CONFIG"
 		version = "GCLOUD_CONFIG"
-		appEngineDirectory = "/src/main"
 	}
 }
