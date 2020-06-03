@@ -1,5 +1,6 @@
 package com.cloud.demo.infra.controller;
 
+import com.cloud.demo.dao.Pet;
 import com.cloud.demo.usecase.hello.Hello;
 import com.cloud.demo.usecase.hello.HelloDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class HelloController {
 
     @RequestMapping(value = "/sql", method = RequestMethod.GET)
     @ResponseBody
-    public List<Map<String,Object>> getSql(HelloDto param) {
+    public List<Pet> getSql(HelloDto param) {
         return hello.HelloSql(param);
     }
 

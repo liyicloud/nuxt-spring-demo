@@ -20,6 +20,17 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+
+	// [ADD Start]
+	compile group: 'jp.co.future', name: 'uroborosql', version: '0.19.0'
+	// 式言語ライブラリとしてOGNLを使用する場合
+	compile group: 'ognl', name: 'ognl', version: '3.1.23'
+	// 式言語ライブラリとしてSpring Expression Language(SpEL)を使用する場合
+	compile group: 'org.springframework', name: 'spring-expression', version: '5.2.3.RELEASE'
+	// REPLを使用する場合
+	compile group: 'org.jline', name: 'jline', version: '3.11.0'
+	compile group: 'org.fusesource.jansi', name: 'jansi', version: '1.18'
+	// [ADD End]
 }
 
 test {
