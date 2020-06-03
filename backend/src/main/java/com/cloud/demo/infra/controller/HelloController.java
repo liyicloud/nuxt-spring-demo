@@ -5,6 +5,9 @@ import com.cloud.demo.usecase.hello.HelloDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/hello")
 public class HelloController {
@@ -15,6 +18,12 @@ public class HelloController {
     @RequestMapping(method = RequestMethod.GET)
     public String getMethod(HelloDto param) {
         return hello.HelloAct(param);
+    }
+
+    @RequestMapping(value = "/sql", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Map<String,Object>> getSql(HelloDto param) {
+        return hello.HelloSql(param);
     }
 
     @RequestMapping(method = RequestMethod.POST)
