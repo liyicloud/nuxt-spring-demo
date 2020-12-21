@@ -8,16 +8,21 @@ import jp.co.future.uroborosql.filter.DebugSqlFilter;
 import jp.co.future.uroborosql.filter.SqlFilterManagerImpl;
 import jp.co.future.uroborosql.store.NioSqlManagerImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class HelloImpl implements Hello {
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private final SqlConfig sqlConfig;
+
+    public HelloImpl(SqlConfig sqlConfig) {
+        this.sqlConfig = sqlConfig;
+    }
 
     @Override
     public String HelloAct(HelloDto param) {
@@ -26,23 +31,17 @@ public class HelloImpl implements Hello {
 
     @Override
     public List<Pet> HelloSql(HelloDto param) {
-        SqlAgent agent = getSqlConfig().agent();
+        SqlAgent agent = sqlConfig.agent();
         List<Pet> pets = agent.query("pets-find")
                 .param("ownerId", param.getId())
                 .collect(Pet.class);
-        return pets;
-    }
 
-    /**
-     * UroboroSQLのサンプル
-     * @return
-     */
-    private SqlConfig getSqlConfig() {
-        SqlConfig sqlConfig = UroboroSQL.builder(jdbcTemplate.getDataSource())
-                .setSqlManager(new NioSqlManagerImpl(false))
-                //.setSqlFilterManager(new SqlFilterManagerImpl().addSqlFilter(new DumpResultSqlFilter()))
-                .setSqlFilterManager(new SqlFilterManagerImpl().addSqlFilter(new DebugSqlFilter()))
-                .build();
-        return sqlConfig;
+//        Optional<Pet> petone = agent.query("pets-find")
+//                .param("ownerId", param.getId())
+//                .findOne(Pet.class);
+//
+//        System.out.println(petone.isEmpty());
+
+        return pets;
     }
 }

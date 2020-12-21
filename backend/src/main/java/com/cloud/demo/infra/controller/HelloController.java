@@ -13,11 +13,10 @@ import java.util.Map;
 @RequestMapping("/hello")
 public class HelloController {
 
-    @Autowired
     private Hello hello;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String getMethod(HelloDto param) {
+    public String printParam(HelloDto param) {
         return hello.HelloAct(param);
     }
 
@@ -27,13 +26,8 @@ public class HelloController {
         return hello.HelloSql(param);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public String postMethod1() {
-        return "post";
-    }
-
-    @RequestMapping(value = "/hey", method = RequestMethod.POST)
-    public String postMethod2() {
-        return "hey post";
+    @Autowired
+    public void setHello(Hello hello) {
+        this.hello = hello;
     }
 }

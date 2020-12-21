@@ -12,15 +12,11 @@ import java.util.Date;
 @Table(name = "PETS")
 public class Pet extends BaseModel {
 
-
     private String name;
-
 
     private Date birthDate;
 
-
     private int typeId;
-
 
     private int ownerId;
 
