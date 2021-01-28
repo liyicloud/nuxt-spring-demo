@@ -1,0 +1,11 @@
+steps:
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - functions
+      - deploy
+      - liyi-test-java
+      - --region=asia-northeast1
+      - --source=.
+      - --runtime=java11
+      - --entry-point=com.example.Example
+      - --trigger-http
