@@ -15,7 +15,6 @@
 
 node_modules
 #!include:.gitignore
-src
 !dist
 
 # TypeScript
